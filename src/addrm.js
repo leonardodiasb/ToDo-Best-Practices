@@ -34,7 +34,7 @@ export default class AddRm {
                                         <i class="drag-line fas fa-ellipsis-v"></i>
                                     </div>`);
       }
-      window.location.reload();
+      this.loadLiEvents();
     }
     status.saveStorage();
   }
@@ -52,7 +52,8 @@ export default class AddRm {
       });
     });
     localStorage.setItem('ToDoList', JSON.stringify(newList));
-    window.location.reload();
+    status.populate();
+    this.loadLiEvents();
   }
 
   editText = (e) => {
@@ -74,6 +75,27 @@ export default class AddRm {
       }
     }
     status.saveStorage();
-    window.location.reload();
+    status.populate();
+    this.loadLiEvents();
+  }
+
+  loadLiEvents = () => {
+    const draggables = document.querySelectorAll('.td-item');
+    draggables.forEach((draggable) => {
+      draggable.addEventListener('dragstart', () => {
+        draggable.classList.add('dragging');
+      });
+
+      draggable.addEventListener('dragend', () => {
+        draggable.classList.remove('dragging');
+      });
+
+      draggable.addEventListener('keypress', this.editText);
+    });
+
+    const rmvLine = document.querySelectorAll('.delete-line');
+    rmvLine.forEach((rmv) => {
+      rmv.addEventListener('click', this.removeLine);
+    });
   }
 }

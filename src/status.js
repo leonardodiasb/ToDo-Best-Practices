@@ -27,6 +27,7 @@ export default class Status {
     const tdListStored = JSON.parse(localStorage.getItem('ToDoList'));
     const tdList = tdListStored;
     const list = document.getElementById('td-section');
+    list.innerHTML = '';
     for (let i = 0; i < tdList.length; i += 1) {
       if (tdList[i].completed) {
         list.insertAdjacentHTML('beforeend',
