@@ -44,13 +44,13 @@ export default class AddRm {
     const item = Array.prototype.slice.call(itemToRemove);
     const checked = item.filter((item) => !item.firstChild.nextSibling.checked);
     const newList = [];
-    for (let i = 0; i < checked.length; i += 1) {
+    checked.forEach((element, index) => {
       newList.push({
-        description: checked[i].childNodes[3].innerText,
+        description: checked[index].childNodes[3].innerText,
         completed: false,
-        index: i + 1,
+        index: index + 1,
       });
-    }
+    });
     localStorage.setItem('ToDoList', JSON.stringify(newList));
     window.location.reload();
   }
