@@ -21,9 +21,9 @@ list.addEventListener('change', (e) => {
 const drag = new DragDropSort();
 const addrm = new AddRm();
 
-  document.addEventListener('dragover', drag.dragOver);
+document.addEventListener('dragover', drag.dragOver);
 
-  document.addEventListener('drop', drag.dropSort);
+document.addEventListener('drop', drag.dropSort);
 
 document.addEventListener('DOMContentLoaded', addrm.loadLiEvents);
 
